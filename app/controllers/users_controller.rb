@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
     else
+      flash[:notice] = "#{@user.errors.full_messages}"
       redirect_back(fallback_location: root_path)
     end
   end
