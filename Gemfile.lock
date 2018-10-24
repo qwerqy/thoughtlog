@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 42a51f9732a44805d02ee6295095f0e964f1706f
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -243,6 +251,7 @@ DEPENDENCIES
   carrierwave-aws
   chromedriver-helper
   coffee-rails (~> 4.2)
+  faker!
   figaro
   jbuilder (~> 2.5)
   jquery-rails

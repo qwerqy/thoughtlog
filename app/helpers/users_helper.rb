@@ -16,4 +16,8 @@ module UsersHelper
   def sign_out
     session[:user_id] = nil
   end
+
+  def following?(user)
+    current_user.following.include?(user)
+  end
 end
