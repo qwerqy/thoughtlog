@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       sign_in(@user)
       redirect_to root_path
     else
-      flash[:notice] = "#{@user.errors.full_messages}"
+      flash[:notice] = "Invalid details/Account not found."
       redirect_back(fallback_location: root_path)
     end
   end
