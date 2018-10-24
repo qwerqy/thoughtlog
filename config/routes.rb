@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'followings/create'
-  get 'followings/destroy'
   root 'home#index'
   get 'home/index'
   get '/login' => 'sessions#new', as: 'login'
@@ -12,5 +10,8 @@ Rails.application.routes.draw do
   resources :user, controller: 'users' do
     post '/follow' => 'users#follow', as: 'follow'
     delete '/unfollow' => 'users#unfollow', as: 'unfollow'
+    resources :projects, controller: 'projects', only: [:create, :new, :show, :edit]
   end
+
+  get '/projects/all' => 'projects#index', as: 'all_projects'
 end
