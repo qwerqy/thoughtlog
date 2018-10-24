@@ -72,6 +72,8 @@ gem 'aws-sdk-rails'
 
 gem 'carrierwave-aws'
 
+gem 'trix'
+
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
