@@ -16,3 +16,10 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+$(".message.closable .close.icon").on ("click", () => {
+  $('.message.closable').fadeOut("slow")[
+  false
+  ]
+})

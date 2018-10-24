@@ -1,0 +1,37 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="two column row">
+      <div class="column">
+        <h1 class="header">
+          <% if @user.first_name %>
+          <%=@user.name%>
+          <% else %>
+          <%=@user.email%>
+          <% end %>
+        </h1>
+        <div class="ui grid">
+          <div class="two column row">
+            <div class="column">
+              <h4 class="header">
+                Followers:
+              </h4>
+            </div>
+            <div class="column">
+              <h4 class="header">
+                Following:
+              </h4>
+            </div>
+          </div>
+        </div>
+        <% if @user.id == current_user.id %>
+        <%=link_to "Edit Profile", edit_user_path(@user.id), class: 'ui teal button', style:"margin-top:1em;margin-bottom:1em;"%>
+        <% end %>
+        <p><%=@user.location%></p>
+        <p><%=@user.about%></p>
+      </div>
+      <div class="column">
+        <%=image_tag(@user.avatar_url, class: 'ui right floated small circular image')%>
+      </div>
+    </div>
+  </div>
+</div>

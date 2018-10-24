@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   include BCrypt
   has_secure_password
 
@@ -8,6 +9,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 8}, if: :password
 
   def name
-    "#{self.first_name}" + "#{self.last_name}"
+    "#{self.first_name} " + "#{self.last_name}"
   end
 end
