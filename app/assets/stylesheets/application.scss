@@ -17,6 +17,7 @@
  @import "semantic-ui";
  @import "semantic-ui/collections/menu";
 
- body {
-   background-color: #fafafa;
- }
+ .message.closable {
+   margin-left: 20%;
+   margin-right: 20%;
+  }
