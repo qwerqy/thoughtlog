@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :edit]
+  before_action :require_login, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   include UsersHelper
   def new
     @user = User.new
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      sign_in(@user)
       redirect_to root_path
     else
       flash[:notice] = "#{@user.errors.full_messages}"
