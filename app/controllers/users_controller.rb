@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show, :edit]
+  include UsersHelper
   def new
     @user = User.new
   end
@@ -32,6 +34,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    @user = User.find(params[:user_id])
+    current_user.follow!(@user)
+    redirect_back(fallback_location: @user)
+  end
+
+  def unfollow
+    @user = User.find(params[:user_id])
+    current_user.unfollow!(@user)
+    redirect_back(fallback_location: @user)
+  end
+
   private
 
   def user_params
@@ -44,7 +58,8 @@ class UsersController < ApplicationController
       :about,
       :location,
       :avatar,
-      :avatar_cache
+      :avatar_cache,
+      :remote_avatar_url
     )
   end
 end
