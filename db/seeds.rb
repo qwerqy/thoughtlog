@@ -1,17 +1,16 @@
-# Seed Users
 user = {}
-user['password'] = 'asdf'
-# user['password_confirmation'] = 'asdf'
+user['password'] = '12345678'
 
 ActiveRecord::Base.transaction do
-  10.times do
-    user['first_name'] = Faker::Name.first_name
-    user['last_name'] = Faker::Name.last_name
-    user['email'] = Faker::Internet.email
-    user['about'] = Faker::Lorem.paragraph(10)
-    user['location'] = Faker::Nation.capital_city
-    user['remote_avatar_url'] = Faker::LoremFlickr.image("300x300", ['people'])
+	40.times do
+		user['first_name'] = Faker::Name.first_name
+		user['last_name'] = Faker::Name.last_name
 
-    User.create(user)
-  end
+    	user["email"] = Faker::Internet.email
+    	# user["remote_avatar_url"] = Faker::Avatar.image
+    	user["about"] = Faker::Hipster.paragraph
+    	user["location"] = Faker::Address.country
+
+		User.create(user)
+	end
 end
