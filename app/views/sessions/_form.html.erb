@@ -1,0 +1,13 @@
+<%=form_with scope: :session, url: login_path, method: 'post', local: true, class: 'ui form' do |f| %>
+  <div class="inline fields">
+    <div class="field"%>
+      <%=f.label :email%>
+      <%=f.text_field :email%>
+    </div>
+    <div class="field">
+      <%=f.label :password%>
+      <%=f.password_field :password%>
+    </div>
+    <%=f.submit "Log In", class: 'ui button'%>
+  </div>
+<% end %>
