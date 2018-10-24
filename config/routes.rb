@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
+  get '/following/projects' => 'home#show', as: 'following_project'
   get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy', as: 'logout'

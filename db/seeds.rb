@@ -7,7 +7,7 @@ ActiveRecord::Base.transaction do
 		user['last_name'] = Faker::Name.last_name
 
     	user["email"] = Faker::Internet.email
-    	# user["remote_avatar_url"] = Faker::Avatar.image
+    	user["remote_avatar_url"] = Faker::LoremFlickr.image("100x100", ['people'])
     	user["about"] = Faker::Hipster.paragraph
     	user["location"] = Faker::Address.country
 
@@ -23,7 +23,7 @@ ActiveRecord::Base.transaction do
 		project['title'] = Faker::App.name
 		project['description'] = Faker::Company.catch_phrase
 		project['link'] = Faker::Internet.url
-		# project['photo'] =
+		project['remote_photo_url'] = Faker::LoremFlickr.image
 		project['user_id'] = user_ids.sample
 
 		Project.create(project)

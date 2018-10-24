@@ -11,7 +11,7 @@
     </div>
     <div class="right menu">
       <%= link_to 'Home', root_path, class: 'item'%>
-      <%= link_to 'Following', root_path, class: 'item'%>
+      <%= link_to 'Following', following_project_path, class: 'item'%>
         <div class="ui dropdown item">
           <%= image_tag(current_user.avatar_url, class: 'ui avatar image') %>
           <div class="menu">
