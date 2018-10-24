@@ -1,18 +1,10 @@
 <div class="ui small secondary menu">
   <div class="ui container">
-    <div class="header item">
-      Thoughtlog
-    </div>
+    <%=link_to "Thoughtlog", root_path, class: 'header item'%>
     <div class="right menu">
-      <div class="item">
-        <%= link_to 'Home', root_path%>
-      </div>
-      <div class="item">
-        <%= link_to 'Following', root_path%>
-      </div>
-      <div class="item">
-        <%= link_to 'Logout', logout_path, method: 'delete', class: '' %>
-      </div>
+      <%= link_to 'Home', root_path, class: 'item' %>
+      <%= link_to 'Following', root_path, class: 'item' %>
+      <%= link_to 'Logout', logout_path, class: 'item' , method: 'delete'%>
       <div class="item">
         <%=link_to user_path(current_user.id) do%>
           <%= image_tag(current_user.avatar_url, class: 'ui avatar image') %>
