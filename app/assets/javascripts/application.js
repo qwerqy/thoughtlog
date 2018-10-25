@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require semantic-ui
+//= require moment
 //= require home
 //= require activestorage
 //= require turbolinks

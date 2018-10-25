@@ -1,2 +1,36 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<div class="ui container text">
+  <div class="ui fluid card">
+    <div class="content">
+      <span class="right floated">
+        <%=link_to "#{@user.name}", user_path(@user.id)%>
+        <%=image_tag(@user.avatar_url, class: 'ui image avatar')%>
+      </span>
+      <h1 class="header"><%=@project.title%></h1>
+    </div>
+    <% if @project.photo.present?%>
+    <div class="image" style='margin:1em;'>
+      <%=image_tag(@project.photo_url, class:'ui image rounded')%>
+    </div>
+    <% end %>
+    <div class="content">
+      <p class="description"><%=sanitize @project.description%></p>
+    </div>
+  </div>
+  <div class="ui fluid card">
+    <% if current_user.id == @user.id %>
+      <div class="content">
+        <%=form_with(scope: :thought, url: user_project_thoughts_path(@user.id, @project.id), method: 'post', id:'thought_form', class: 'ui form') do |f| %>
+          <div class="inline field">
+            <%=f.text_area :content, placeholder: "Add a thought", rows: 2%>
+            <br/>
+            <br/>
+            <%=f.submit "Send", class: 'ui button'%>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="thoughts-timeline content">
+      <%= render 'thoughts/timeline' %>
+    </div>
+  </div>
+</div>
