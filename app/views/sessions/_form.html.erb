@@ -1,5 +1,5 @@
 <div class="ui container text">
-  <h1 class="header">Log In</h1>
+  <h1 class="header centered aligned">Log In</h1>
   <%=form_with scope: :session, url: login_path, method: 'post', local: true, class: 'ui form' do |f| %>
     <div class="inline fields">
       <div class="field"%>
@@ -12,5 +12,8 @@
       </div>
       <%=f.submit "Log In", class: 'ui button'%>
     </div>
+    <%= link_to "/auth/google_oauth2" do %>
+    <%=image_tag('btn_google_signin_light_normal_web.png', class: 'ui image')%>
+    <% end %>
   <% end %>
 </div>

@@ -10,16 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_113430) do
+ActiveRecord::Schema.define(version: 2018_10_25_143149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "uid"
+    t.string "token"
+    t.string "provider"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "photo"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "thoughts_count"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "thoughts", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_thoughts_on_project_id"
+    t.index ["user_id"], name: "index_thoughts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +68,8 @@ ActiveRecord::Schema.define(version: 2018_10_24_113430) do
     t.integer "followers_count"
   end
 
+  add_foreign_key "authentications", "users"
+  add_foreign_key "projects", "users"
+  add_foreign_key "thoughts", "projects"
+  add_foreign_key "thoughts", "users"
 end
