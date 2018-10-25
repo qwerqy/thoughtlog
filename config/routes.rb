@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: 'logout'
   get '/signup' => 'users#new', as: 'signup'
   post '/signup' => 'users#create'
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   resources :user, controller: 'users' do
     post '/follow' => 'users#follow', as: 'follow'
