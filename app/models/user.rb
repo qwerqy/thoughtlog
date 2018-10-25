@@ -7,11 +7,32 @@ class User < ApplicationRecord
   has_many :following, :class_name => 'Relationship', :foreign_key => 'follower_id'
   has_many :projects, dependent: :destroy
   has_many :thoughts, dependent: :destroy
+  has_many :authentications, dependent: :destroy
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, if: :email
   validates :password, presence: true, length: {minimum: 8}, if: :password
+
+
+  def self.create_with_auth_and_hash(authentication, auth_hash)
+   user = self.create!(
+     first_name: auth_hash["info"]["first_name"],
+     last_name: auth_hash["info"]["last_name"],
+     location: auth_hash["info"]["location"],
+     remote_avatar_url: auth_hash["info"]["image"],
+     email: auth_hash["info"]["email"],
+     password: SecureRandom.hex(10)
+   )
+   user.authentications << authentication
+   return user
+  end
+
+  # grab google to access google for user data
+  def google_token
+   x = self.authentications.find_by(provider: 'google_oauth2')
+   return x.token unless x.nil?
+  end
 
   def name
     "#{self.first_name} " + "#{self.last_name}"
