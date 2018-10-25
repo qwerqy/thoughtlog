@@ -69,7 +69,7 @@
             <i class="images large middle aligned grey icon"></i>
             <% end %>
             <div class="content">
-              <a class="header"><%=project.title%></a>
+              <%=link_to "#{project.title}", user_project_path(@user.id, project.id), class: 'header'%>
               <% if project.description.present? %>
                 <div class="description"><%= sanitize project.description%></div>
               <% else %>

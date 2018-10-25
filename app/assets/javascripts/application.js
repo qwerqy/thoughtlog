@@ -13,14 +13,17 @@
 //= require rails-ujs
 //= require jquery
 //= require semantic-ui
+//= require moment
+//= require home
 //= require activestorage
 //= require turbolinks
 //= require trix
 //= require_tree .
 
-
-$(".message.closable .close.icon").on ("click", () => {
-  $('.message.closable').fadeOut("slow")[
-  false
-  ]
+$(document).on('turbolinks:load', function() {
+  $(".message.closable .close.icon").on ("click", () => {
+    $('.message.closable').fadeOut("slow")[
+    false
+    ]
+  })
 })

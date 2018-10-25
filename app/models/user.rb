@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :followers, :class_name => 'Relationship', :foreign_key => 'user_id'
   has_many :following, :class_name => 'Relationship', :foreign_key => 'follower_id'
   has_many :projects, dependent: :destroy
+  has_many :thoughts, dependent: :destroy
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
