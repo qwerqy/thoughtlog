@@ -1,0 +1,35 @@
+<% if signed_in? %>
+  <% if current_user.following.any?%>
+    <div class="ui container">
+      <div class="projects-grid">
+        <div class="grid-sizer"></div>
+        <% @followings.each do |follow|%>
+          <% follow.user.projects.each do |project| %>
+            <div class="grid-item">
+              <div class="ui card">
+                <% if project.photo_url.present?%>
+                <div class="image">
+                  <%=image_tag(project.photo_url)%>
+                </div>
+                <% end %>
+                <div class="content">
+                  <%=link_to "#{project.title}", user_project_path(project.user.id, project.id), class: 'header'%>
+                </div>
+                <div class="extra content">
+                  <%=link_to user_path(project.user.id) do %>
+                    <i class="user icon"></i>
+                    <%=project.user.name%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="ui container">
+      <h4 class="ui grey center aligned header">Looks like you are not following anyone.</h4>
+    </div>
+  <% end %>
+<% end %>

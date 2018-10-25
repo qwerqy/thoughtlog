@@ -1,22 +1,24 @@
-<div class="ui small secondary menu">
+<div class="ui teal inverted small secondary menu">
   <div class="ui container">
-    <div class="header item">
-      Thoughtlog
+    <%=link_to "Thoughtlog", root_path, class:'header item'%>
+    <div class="left menu">
+      <div class="item">
+        <div class="ui icon input" style="width:40vw;">
+          <input type="text" placeholder="Search a very wide input...">
+          <i class="search icon"></i>
+        </div>
+      </div>
     </div>
     <div class="right menu">
-      <div class="item">
-        <%= link_to 'Home', root_path%>
-      </div>
-      <div class="item">
-        <%= link_to 'Following', root_path%>
-      </div>
-      <div class="item">
-        <%= link_to 'Logout', logout_path, method: 'delete', class: '' %>
-      </div>
-      <div class="item">
-        <%=link_to user_path(current_user.id) do%>
+      <%= link_to 'Home', root_path, class: 'item'%>
+      <%= link_to 'Following', following_project_path, class: 'item'%>
+        <div class="ui dropdown item">
           <%= image_tag(current_user.avatar_url, class: 'ui avatar image') %>
-        <% end %>
+          <div class="menu">
+            <%=link_to "My Profile", user_path(current_user.id), class:'item'%>
+            <%=link_to 'Logout', logout_path, method: 'delete', class: 'item' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
