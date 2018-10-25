@@ -1,11 +1,17 @@
 <div class="ui container text">
   <div class="ui fluid card">
     <div class="content">
+      <div class="content">
+        <i class="ellipsis grey horizontal icon"></i>
+      </div>
+      <div class="ui divider hidden"></div>
       <span class="right floated">
         <%=link_to "#{@user.name}", user_path(@user.id)%>
         <%=image_tag(@user.avatar_url, class: 'ui image avatar')%>
       </span>
-      <h1 class="header"><%=@project.title%></h1>
+      <div class="left floated">
+        <h1 class="header"><%=@project.title%> </h1>
+      </div>
     </div>
     <% if @project.photo.present?%>
     <div class="image" style='margin:1em;'>

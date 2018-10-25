@@ -7,7 +7,7 @@
         </div>
         <div class="content">
           <div class="summary">
-            <%=thought.user.name%> added a thought.
+            <%=link_to "#{thought.user.name}", user_path(@user.id)%> added a thought.
             <div class="date">
               <%=thought.created_at.strftime('%b %e, %l:%M %p')%>
             </div>
