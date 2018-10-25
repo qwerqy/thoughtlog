@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def show
-    @followings = current_user.followers
+    @followings = current_user.following
   end
 end
