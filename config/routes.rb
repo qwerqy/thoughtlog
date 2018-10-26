@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get '/projects/all' => 'projects#index', as: 'all_projects'
   get '/projects/:blog_name/:id' => 'projects#tumblr_show', as: 'tumblr'
+  post '/projects/:blog_name/:id/inspire' => 'inspires#create', as: 'idea_inspire'
   get '/:user_id/projects/user' => 'projects#user_projects', as: 'self_projects'
   get '/:user_id/projects/saved' => 'projects#liked_projects', as: 'liked_projects'
+  get '/:user_id/ideas/inspired' => 'projects#inspired_ideas', as: 'inspired_ideas'
 end
