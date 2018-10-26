@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :thoughts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  has_many :inspires
-  has_many :ideas, through: :inspires
+  has_many :inspires, dependent: :destroy
+  has_many :ideas, through: :inspires, dependent: :destroy
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
@@ -18,6 +18,11 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates :password, presence: true, length: {minimum: 8}, if: :password
 
+  # def check_uniqueness_of_name
+  #   if Idea.includes(inspires: :users).where.not(items: {id: self.id}).where(items: {name: self.name}).count > 0
+  #     errors.add(:name, 'name was duplidated')
+  #   end
+  # end
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
