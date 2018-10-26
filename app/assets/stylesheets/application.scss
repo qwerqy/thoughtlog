@@ -4,6 +4,11 @@
  @import "semantic-ui/collections/menu";
  @import "home";
 
+ html, body {
+   overflow-y: auto;
+   padding-bottom: 3em;
+ }
+
  .message.closable {
    margin-left: 20%;
    margin-right: 20%;
