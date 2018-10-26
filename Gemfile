@@ -88,5 +88,7 @@ gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
 
+gem 'tumblr_client', git: 'https://github.com/tumblr/tumblr_client.git', branch: 'master'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
