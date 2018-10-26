@@ -42,6 +42,11 @@ class ProjectsController < ApplicationController
     redirect_back(fallback_location: @user)
   end
 
+  def tumblr_show
+    client = Tumblr::Client.new consumer_key: ENV['TUMBLR_KEY']
+    @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
+  end
+
   private
 
   def project_params

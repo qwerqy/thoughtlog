@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
 
   get '/projects/all' => 'projects#index', as: 'all_projects'
+  get '/projects/:blog_name/:id' => 'projects#tumblr_show', as: 'tumblr'
 end

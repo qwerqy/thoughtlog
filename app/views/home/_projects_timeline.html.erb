@@ -1,4 +1,4 @@
-<% @projects.each do |project|%>
+<% @projects.includes(:thoughts).each do |project|%>
   <div class="grid-item">
     <div class="ui card">
       <% if project.photo_url.present?%>
