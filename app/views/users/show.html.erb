@@ -44,27 +44,7 @@
 </div>
 <div class="ui container text" style="margin-top:1em;">
   <% if @user.id == current_user.id %>
-    <% if @user.projects.present? %>
-      <div class="ui icon fluid input">
-        <input type="text" placeholder="Search for Project..">
-        <i class="search icon"></i>
-      </div>
-      <div class="ui secondary pointing two item menu">
-        <%= link_to "Projects", self_projects_path, class: 'item active user-projects-btn', remote:true%>
-        <%= link_to "Liked", liked_projects_path, class: 'item liked-projects-btn', remote:true%>
-      </div>
-      <div class="ui middle aligned very relaxed divided list projects-list">
-        <%= render 'users/projects' %>
-      </div>
-    <% else %>
-    <div class="ui placeholder segment">
-      <div class="ui icon header">
-        <i class="plus grey icon"></i>
-        You have no projects. Create one.
-      </div>
-      <%=link_to "Create a Project", new_user_project_path(@user.id), class:'ui teal button'%>
-    </div>
-    <% end %>
+    <%= render 'users/user_projects_tab' %>
   <% else %>
     <% if @user.projects.present? %>
     <div class="ui icon fluid input">
@@ -72,10 +52,10 @@
       <i class="search icon"></i>
     </div>
     <div class="ui secondary pointing two item menu">
-      <%= link_to "Projects", self_projects_path, class: 'item active user-projects-btn', remote:true%>
-      <%= link_to "Liked", liked_projects_path, class: 'item liked-projects-btn', remote:true%>
+      <%= link_to "Projects", self_projects_path(@user.id), class: 'item active user-projects-btn', remote:true%>
+      <%= link_to "Liked", liked_projects_path(@user.id), class: 'item liked-projects-btn', remote:true%>
     </div>
-      <div class="ui middle aligned very relaxed divided list">
+      <div class="ui middle aligned very relaxed divided list projects-list">
         <%= render 'users/projects' %>
       </div>
     <% else %>

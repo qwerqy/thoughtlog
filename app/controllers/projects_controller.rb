@@ -49,14 +49,14 @@ class ProjectsController < ApplicationController
   end
 
   def user_projects
-    @user = current_user
+    @user = User.find(params[:user_id])
     respond_to do |format|
       format.js
     end
   end
 
   def liked_projects
-    @user = current_user
+    @user = User.find(params[:user_id])
     respond_to do |format|
       format.js
     end

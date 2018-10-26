@@ -26,3 +26,12 @@
     </div>
   </div>
 <% end %>
+<% if current_user.id == @user.id %>
+<div class="ui placeholder segment">
+  <div class="ui icon header">
+    <i class="plus grey icon"></i>
+    You have no projects. Create one.
+  </div>
+  <%=link_to "Create a Project", new_user_project_path(@user.id), class:'ui teal button'%>
+</div>
+<% end %>
