@@ -1,7 +1,6 @@
 <% if signed_in? %>
   <div class="ui container">
-    <div class="projects-grid">
-      <div class="grid-sizer"></div>
+    <div class="ui three column doubling stackable masonry grid">
       <%= render 'home/tumblr_timeline' %>
       <%= render 'home/projects_timeline'%>
     </div>
