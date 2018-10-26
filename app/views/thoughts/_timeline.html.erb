@@ -1,37 +1,21 @@
 <div class="ui feed">
-  <% if @project.thoughts.any? %>
-    <% @project.thoughts.includes(:user, :project).reverse.each do |thought| %>
-      <div class="event">
-        <div class="label">
-          <%=image_tag(thought.user.avatar_url, class:'ui avatar image')%>
-        </div>
-        <div class="content">
-          <div class="summary">
-            <%=link_to "#{thought.user.name}", user_path(@user.id)%> added a thought.
-            <div class="date">
-              <%=thought.created_at.strftime('%b %e, %l:%M %p')%>
-            </div>
-          </div>
-          <div class="extra text">
-            <%=thought.content%>
-          </div>
-        </div>
-      </div>
-      <div class="ui divider hidden"></div>
-    <% end %>
-  <% else %>
+  <% @project.thoughts.includes(:user, :project).reverse.each do |thought| %>
     <div class="event">
       <div class="label">
-        <i class="frown outline icon"></i>
+        <%=image_tag(thought.user.avatar_url, class:'ui avatar image')%>
       </div>
       <div class="content">
         <div class="summary">
-          Nothing here...
+          <%=link_to "#{thought.user.name}", user_path(@user.id)%> added a thought.
+          <div class="date">
+            <%=thought.created_at.strftime('%b %e, %l:%M %p')%>
+          </div>
         </div>
         <div class="extra text">
-          Either the owner hasn't created his/her first thought, or something went wrong.
+          <%=thought.content%>
         </div>
       </div>
     </div>
+    <div class="ui divider hidden"></div>
   <% end %>
 </div>
