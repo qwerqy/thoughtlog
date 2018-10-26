@@ -11,7 +11,8 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, if: :email
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, if: :email
+  validates_presence_of :email
   validates :password, presence: true, length: {minimum: 8}, if: :password
 
 
