@@ -1,0 +1,17 @@
+<% @user.likes.each do |like| %>
+  <div class="item">
+    <% if like.project.photo_url.present? %>
+    <%=image_tag(like.project.photo_url, class: 'ui image avatar')%>
+    <% else %>
+    <i class="images large middle aligned grey icon"></i>
+    <% end %>
+    <div class="content">
+      <%=link_to "#{like.project.title}", user_project_path(like.project.user.id, like.project.id), class: 'header'%>
+      <% if like.project.description.present? %>
+        <div class="description"><%= sanitize like.project.description%></div>
+      <% else %>
+        <div class="description">No project description.</div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

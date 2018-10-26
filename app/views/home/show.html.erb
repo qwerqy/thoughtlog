@@ -1,11 +1,10 @@
 <% if signed_in? %>
   <% if current_user.following.any?%>
     <div class="ui container">
-      <div class="projects-grid">
-        <div class="grid-sizer"></div>
+      <div class="ui three column doubling stackable masonry grid">
         <% @followings.each do |follow|%>
           <% follow.user.projects.each do |project| %>
-            <div class="grid-item">
+            <div class="column">
               <div class="ui card">
                 <% if project.photo_url.present?%>
                 <div class="image">

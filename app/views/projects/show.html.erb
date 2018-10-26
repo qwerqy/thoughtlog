@@ -20,6 +20,20 @@
     <% end %>
     <div class="content">
       <p class="description"><%=sanitize @project.description%></p>
+      <div class="ui labeled button" tabindex="0">
+        <% if current_user.like?(@project) %>
+          <%=link_to user_project_like_path(@user.id, @project.id, @like.id), method:'DELETE', remote: true, class:'ui teal button like-button' do %>
+            <i class="heart icon"></i> Saved!
+          <% end %>
+        <% else %>
+          <%=link_to user_project_likes_path(@user.id, @project.id), method:'POST', remote: true, class:'ui teal button like-button' do %>
+            <i class="heart icon"></i> Save
+          <% end %>
+        <% end %>
+        <a class="ui basic teal left pointing label likes-count">
+          <%=@project.likes.count%>
+        </a>
+      </div>
     </div>
   </div>
   <div class="ui fluid card">

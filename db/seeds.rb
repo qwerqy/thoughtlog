@@ -23,7 +23,7 @@ ActiveRecord::Base.transaction do
 		project['title'] = Faker::App.name
 		project['description'] = Faker::Company.catch_phrase
 		project['link'] = Faker::Internet.url
-		project['remote_photo_url'] = Faker::LoremFlickr.image
+		project['remote_photo_url'] = Faker::LoremFlickr.image("240x320", ['project'])
 		project['user_id'] = user_ids.sample
 
 		Project.create(project)

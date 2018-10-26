@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @project = @user.projects.find(params[:id])
+    @like = @project.likes.find_by(user_id: current_user.id)
   end
 
   def new
@@ -45,6 +46,20 @@ class ProjectsController < ApplicationController
   def tumblr_show
     client = Tumblr::Client.new consumer_key: ENV['TUMBLR_KEY']
     @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
+  end
+
+  def user_projects
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def liked_projects
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
