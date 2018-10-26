@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def tumblr_show
-    client = Tumblr::Client.new consumer_key: ENV['TUMBLR_KEY']
+    client = Tumblr::Client.new
     @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
   end
 
@@ -56,6 +56,13 @@ class ProjectsController < ApplicationController
   end
 
   def liked_projects
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def inspired_ideas
     @user = User.find(params[:user_id])
     respond_to do |format|
       format.js
