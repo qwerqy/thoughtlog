@@ -12,6 +12,8 @@
       <% else %>
         <div class="description">No project description.</div>
       <% end %>
+      <br/>
+      <%=link_to "Create Inspired Project", user_inspired_project_path(@user.id, idea.id), class: 'ui teal button tiny'%>
     </div>
   </div>
 <% end %>

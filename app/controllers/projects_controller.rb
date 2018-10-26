@@ -69,6 +69,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def new_inspired_projects
+    @user = User.find(params[:user_id])
+    @idea = Idea.find(params[:id])
+  end
+
   private
 
   def project_params

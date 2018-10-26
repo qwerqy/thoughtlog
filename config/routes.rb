@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :thoughts, controller: 'thoughts'
       resources :likes, controller: 'likes', only: [:create, :destroy]
     end
+    get '/inspired-project/:id/new' => 'projects#new_inspired_projects', as: 'inspired_project'
   end
 
   get '/projects/all' => 'projects#index', as: 'all_projects'
