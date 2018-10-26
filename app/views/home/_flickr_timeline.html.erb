@@ -1,0 +1,23 @@
+<% @flickrs.each do |flickr|%>
+  <div class="column">
+    <div class="ui card">
+      <div class="image">
+        <%=image_tag('imageplaceholder.png', data: {src: flickr[:photo]})%>
+      </div>
+      <div class="content">
+        <%= link_to "Photo by #{flickr[:user]}", root_path, class: 'header' %>
+        <br/>
+        <button class="ui disabled mini button">
+          <i class="external alternate icon"></i>
+          Flickr
+        </button>
+      </div>
+      <div class="extra content">
+        <%=link_to flickr[:link] do %>
+          <i class="user icon"></i>
+          <%=flickr[:user]%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

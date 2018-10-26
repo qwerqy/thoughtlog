@@ -1,0 +1,41 @@
+<div class="ui container text">
+  <div class="ui fluid card">
+    <div class="content">
+      <div class="content">
+        <i class="ellipsis grey horizontal icon"></i>
+        <div class="right floated">
+          <button class="ui disabled mini button">
+            <i class="external alternate icon"></i>
+            Tumblr
+          </button>
+        </div>
+      </div>
+      <div class="ui divider hidden"></div>
+      <span class="right floated">
+        <%=@project['blog']['name']%>
+        <i class="tumblr icon"></i>
+      </span>
+      <div class="left floated">
+        <h1 class="header"><%=@project['blog']['title']%> </h1>
+      </div>
+    </div>
+    <% if @project['posts'][0]['photos'].present?%>
+    <div class="image" style='margin:1em;'>
+      <%=image_tag(@project['posts'][0]['photos'][0]['original_size']['url'], class:'ui image rounded')%>
+    </div>
+    <% end %>
+    <div class="content">
+      <p class="description"><%= sanitize @project['posts'][0]['caption'] %></p>
+      <p class="description"><%= sanitize @project['posts'][0]['body'] %></p>
+      <% if current_user.ideas.find_by(link: @project['posts'][0]['short_url']).nil?%>
+        <%=link_to idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button like-button' do %>
+          <i class="star icon"></i> Inspire
+        <% end %>
+      <% else %>
+        <%=link_to idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button disabled like-button' do %>
+          <i class="star icon"></i> Inspired!
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

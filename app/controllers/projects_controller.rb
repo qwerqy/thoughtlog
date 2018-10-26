@@ -48,6 +48,11 @@ class ProjectsController < ApplicationController
     @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
   end
 
+  def flickr_show
+    flickr = FlickRaw::Flickr.new ENV['FLICKRAW_API_KEY'], ENV['FLICKRAW_SHARED_SECRET']
+    @project = flicker.tags.getClusterPhotos tag: 'idea'
+  end
+
   def user_projects
     @user = User.find(params[:user_id])
     respond_to do |format|
