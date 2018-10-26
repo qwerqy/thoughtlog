@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :thoughts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  has_many :inspires
+  has_many :ideas, through: :inspires
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
