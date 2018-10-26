@@ -49,35 +49,12 @@
         <input type="text" placeholder="Search for Project..">
         <i class="search icon"></i>
       </div>
-      <div class="ui middle aligned very relaxed divided list">
-        <% @user.projects.each do |project| %>
-          <div class="item">
-            <% if current_user.id == @user.id %>
-            <div class="content right floated">
-              <div class="ui dropdown">
-                <i class="ellipsis vertical floated right grey icon"></i>
-                <div class="menu">
-                  <%=link_to "Edit Project", edit_user_project_path(@user.id, project.id), class: 'item'%>
-                  <%=link_to "Delete Project", user_project_path(@user.id, project.id), method: 'delete', class:'item', data: {confirm: 'Are you sure you want to delete this project?'}%>
-                </div>
-              </div>
-            </div>
-            <% end %>
-            <% if project.photo_url.present? %>
-            <%=image_tag(project.photo_url, class: 'ui image avatar')%>
-            <% else %>
-            <i class="images large middle aligned grey icon"></i>
-            <% end %>
-            <div class="content">
-              <%=link_to "#{project.title}", user_project_path(@user.id, project.id), class: 'header'%>
-              <% if project.description.present? %>
-                <div class="description"><%= sanitize project.description%></div>
-              <% else %>
-                <div class="description">No project description.</div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+      <div class="ui secondary pointing two item menu">
+        <%= link_to "Projects", self_projects_path, class: 'item active user-projects-btn', remote:true%>
+        <%= link_to "Liked", liked_projects_path, class: 'item liked-projects-btn', remote:true%>
+      </div>
+      <div class="ui middle aligned very relaxed divided list projects-list">
+        <%= render 'users/projects' %>
       </div>
     <% else %>
     <div class="ui placeholder segment">
@@ -94,24 +71,12 @@
       <input type="text" placeholder="Search for Project..">
       <i class="search icon"></i>
     </div>
+    <div class="ui secondary pointing two item menu">
+      <%= link_to "Projects", self_projects_path, class: 'item active user-projects-btn', remote:true%>
+      <%= link_to "Liked", liked_projects_path, class: 'item liked-projects-btn', remote:true%>
+    </div>
       <div class="ui middle aligned very relaxed divided list">
-        <% @user.projects.each do |project| %>
-          <div class="item">
-            <% if project.photo_url.present? %>
-            <%=image_tag(project.photo_url, class: 'ui image avatar')%>
-            <% else %>
-            <i class="images large middle aligned grey icon"></i>
-            <% end %>
-            <div class="content">
-              <%=link_to "#{project.title}", user_project_path(@user.id, project.id), class: 'header'%>
-              <% if project.description.present? %>
-                <div class="description"><%= sanitize project.description%></div>
-              <% else %>
-                <div class="description">No project description.</div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        <%= render 'users/projects' %>
       </div>
     <% else %>
     <h4 class="ui header">This user has no projects.</h4>

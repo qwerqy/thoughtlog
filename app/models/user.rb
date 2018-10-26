@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :following, :class_name => 'Relationship', :foreign_key => 'follower_id'
   has_many :projects, dependent: :destroy
   has_many :thoughts, dependent: :destroy
-  has_many :saves, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :authentications, dependent: :destroy
 
   validates :first_name, presence: true, if: :first_name
@@ -42,6 +42,10 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.find_by(user_id: other_user.id)
+  end
+
+  def like?(project)
+    likes.find_by(project_id: project.id)
   end
 
   def follow!(other_user)

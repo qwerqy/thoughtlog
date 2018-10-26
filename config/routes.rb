@@ -14,9 +14,12 @@ Rails.application.routes.draw do
     delete '/unfollow' => 'users#unfollow', as: 'unfollow'
     resources :projects, controller: 'projects', only: [:create, :new, :show, :edit, :update, :destroy] do
       resources :thoughts, controller: 'thoughts'
+      resources :likes, controller: 'likes', only: [:create, :destroy]
     end
   end
 
   get '/projects/all' => 'projects#index', as: 'all_projects'
   get '/projects/:blog_name/:id' => 'projects#tumblr_show', as: 'tumblr'
+  get '/projects/user' => 'projects#user_projects', as: 'self_projects'
+  get '/projects/saved' => 'projects#liked_projects', as: 'liked_projects'
 end
