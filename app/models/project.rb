@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   mount_uploader :photo, PhotoUploader
   belongs_to :user
   has_many :thoughts, dependent: :destroy
