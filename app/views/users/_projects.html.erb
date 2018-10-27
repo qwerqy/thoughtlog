@@ -26,7 +26,7 @@
     </div>
   </div>
 <% end %>
-<% if current_user.id == @user.id && current_user.projects.nil?%>
+<% if current_user.id == @user.id && current_user.projects.empty?%>
   <div class="ui placeholder segment">
     <div class="ui icon header">
       <i class="plus grey icon"></i>
