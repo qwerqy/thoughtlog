@@ -10,7 +10,7 @@
         <%=link_to "#{project.title}", user_project_path(project.user.id, project.id), class: 'header'%>
         <% if project.thoughts.present? %>
           <div class="meta">
-            <%=project.thoughts.count%> thoughts.
+            <%=project.thoughts.size%> thoughts.
           </div>
         <% end %>
         <div class="description">
