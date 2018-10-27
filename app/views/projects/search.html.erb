@@ -1,0 +1,41 @@
+<% if signed_in? %>
+  <div class="ui container">
+      <% unless @projects.nil? %>
+        <% if @projects.empty? %>
+          <div class="ui divider hidden"></div>
+          <h3 class="ui header aligned center">No projects found matching your query.</h3>
+        <% else %>
+        <div class="ui divider hidden"></div>
+        <h3 class="ui header aligned center">Search results: <%=@projects.size%></h3>
+        <div class="ui divider"></div>
+        <div class="ui three column doubling stackable masonry grid">
+          <% @projects.each do |project|%>
+            <div class="column">
+              <div class="ui card">
+                <% if project.photo.url.present?%>
+                  <div class="image">
+                    <%=image_tag('imageplaceholder.png', data: {src: project.photo.url})%>
+                  </div>
+                <% end %>
+                <div class="content">
+                  <%=link_to "#{project.title}", user_project_path(User.find(project.user_id).id, project.id), class: 'header'%>
+                  <div class="description">
+                    <%=sanitize project.description%>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <%=link_to user_path(User.find(project.user_id).id) do %>
+                    <i class="user icon"></i>
+                    <%=User.find(project.user_id).name%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+<% else %>
+  <%= render 'home/landing' %>
+<% end %>
