@@ -3,10 +3,13 @@
       <% unless @projects.nil? %>
         <% if @projects.empty? %>
           <div class="ui divider hidden"></div>
-          <h3 class="ui header aligned center">No projects found matching your query.</h3>
+          <div class="ui three column doubling stackable masonry grid">
+            <%= render 'home/tumblr_timeline' %>
+            <%= render 'home/flickr_timeline' %>
+          </div>
         <% else %>
         <div class="ui divider hidden"></div>
-        <h3 class="ui header aligned center">Search results: <%=@projects.size%></h3>
+        <h3 class="ui header aligned center">Search results: <%=@count%></h3>
         <div class="ui divider"></div>
         <div class="ui three column doubling stackable masonry grid">
           <% @projects.each do |project|%>
@@ -32,6 +35,8 @@
               </div>
             </div>
           <% end %>
+          <%= render 'home/tumblr_timeline' %>
+          <%= render 'home/flickr_timeline' %>
         </div>
         <% end %>
       <% end %>

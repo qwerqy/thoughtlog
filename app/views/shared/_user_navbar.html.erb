@@ -5,7 +5,7 @@
       <div class="item">
         <%= form_for :search_projects, url: search_projects_path, method: :get do |form| %>
           <div class="ui icon input" style="width:40vw;">
-            <%= form.text_field :query, value: params[:search_projects].presence && params[:search_projects][:query], placeholder: 'Search for Projects...' %>
+            <%= form.text_field :query, value: params[:search_projects].presence && params[:search_projects][:query], placeholder: 'Search for Projects, Ideas or anything...' %>
             <i class="search icon"></i>
           </div>
         <% end %>

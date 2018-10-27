@@ -93,7 +93,11 @@ class ProjectsController < ApplicationController
     query = params[:search_projects].presence && params[:search_projects][:query]
 
     if query
+      client = Tumblr::Client.new
+      @tagged = client.tagged query, limit: 10
+      @flickrs = Project.get_flickr(query)
       @projects = Project.search(query)
+      @count = @projects.size + @flickrs.size + @tagged.size
     end
   end
 
