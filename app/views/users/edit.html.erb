@@ -1,4 +1,5 @@
 <div class="ui container text">
+  <div class="ui header teal">Edit Profile.</div>
   <div class="ui grid">
     <div class="two column row">
       <div class="column">
@@ -40,4 +41,56 @@
     <%=f.submit "Save Profile", class: 'ui teal button'%>
     <%=link_to "Back to Profile", user_path(@user.id), class: 'ui button'%>
   <% end %>
+  <div class="ui divider hidden"></div>
+  <div class="ui divider"></div>
+  <div class="ui header teal">Account Settings.</div>
+  <div class="ui grid two column">
+    <div class="column">
+      <div class="ui form">
+        <div class="fields">
+          <div class="inline field">
+            <label>Email Address:</label>
+            <input placeholder="<%=@user.email%>" readonly="" type="text">
+          </div>
+        </div>
+        <div class="field change-email-window">
+          <div class="divider ui"></div>
+          <%=form_with( scope: :user, url: user_update_email_path(@user.id), method: 'patch', local: true, id:'change_email_form', class: 'ui form') do |f| %>
+            <div class="field">
+              <%=f.label 'Current Email:'%>
+              <%=f.text_field :current_email, required: true%>
+            </div>
+            <div class="field">
+              <%=f.label 'New Email:'%>
+              <%=f.text_field :new_email, required: true%>
+            </div>
+            <div class="field">
+              <%=f.label 'Enter password:'%>
+              <%=f.password_field :password, required: true%>
+            </div>
+            <%= f.submit 'Apply', class: 'ui teal button' %>
+          <% end %>
+          <div class="divider ui"></div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <a class="ui button" id="change-email" href="#">Change Email</a>
+    </div>
+  </div>
+  <div class="ui grid two column">
+    <div class="column">
+      <div class="ui form">
+        <div class="fields">
+          <div class="inline field">
+            <label>Password:</label>
+            <input placeholder="*********" readonly="" type="password">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <a class="ui button" href="">Change Password</a>
+    </div>
+  </div>
 </div>
