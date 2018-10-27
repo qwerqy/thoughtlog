@@ -14,6 +14,7 @@
       <% end %>
       <br/>
       <%=link_to "Create Inspired Project", user_inspired_project_path(@user.id, idea.id), class: 'ui teal button tiny'%>
+      <%=link_to "Remove", user_remove_inspired_project_path(@user.id, idea.id), method: 'delete', remote: true, class: 'ui button tiny'%>
     </div>
   </div>
 <% end %>

@@ -48,6 +48,12 @@ class ProjectsController < ApplicationController
     @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
   end
 
+  def flickr_show
+    @user = params[:user_name]
+    @photo_id = params[:id]
+    @project = Project.show_flickr(@photo_id)
+  end
+
   def user_projects
     @user = User.find(params[:user_id])
     respond_to do |format|
@@ -74,6 +80,15 @@ class ProjectsController < ApplicationController
     @idea = Idea.find(params[:id])
   end
 
+  def destroy_inspired_projects
+    @user = User.find(params[:user_id])
+    @idea = Idea.find(params[:id])
+    @idea.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def project_params
@@ -81,7 +96,8 @@ class ProjectsController < ApplicationController
       :title,
       :description,
       :link,
-      :photo
+      :photo,
+      :remote_photo_url
     )
   end
 end

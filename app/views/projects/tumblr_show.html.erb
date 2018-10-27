@@ -1,4 +1,4 @@
-<div class="ui container text">
+<div class="ui container text" style="padding-bottom: 3em;">
   <div class="ui fluid card">
     <div class="content">
       <div class="content">
@@ -28,11 +28,11 @@
       <p class="description"><%= sanitize @project['posts'][0]['caption'] %></p>
       <p class="description"><%= sanitize @project['posts'][0]['body'] %></p>
       <% if current_user.ideas.find_by(link: @project['posts'][0]['short_url']).nil?%>
-        <%=link_to idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button like-button' do %>
+        <%=link_to tumblr_idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button like-button' do %>
           <i class="star icon"></i> Inspire
         <% end %>
       <% else %>
-        <%=link_to idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button disabled like-button' do %>
+        <%=link_to tumblr_idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button disabled like-button' do %>
           <i class="star icon"></i> Inspired!
         <% end %>
       <% end %>

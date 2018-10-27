@@ -1,0 +1,39 @@
+<div class="ui container text" style="padding-bottom: 3em;">
+  <div class="ui fluid card">
+    <div class="content">
+      <div class="content">
+        <i class="ellipsis grey horizontal icon"></i>
+        <div class="right floated">
+          <%=link_to @project[:link], target:'_blank' do %>
+          <button class="ui disabled mini button">
+            <i class="external alternate icon"></i>
+            Flickr
+          </button>
+          <% end %>
+        </div>
+      </div>
+      <div class="ui divider hidden"></div>
+      <span class="right floated">
+        <%=@project[:user]%>
+        <i class="flickr icon"></i>
+      </span>
+      <div class="left floated">
+        <h1 class="header"><%=link_to "#{@project[:title]}", @project[:link], target:'_blank' %> </h1>
+      </div>
+    </div>
+    <div class="image" style='margin:1em;'>
+      <%=image_tag(@project[:photo], class:'ui image rounded')%>
+    </div>
+    <div class="content">
+      <% if current_user.ideas.find_by(link: @project[:link]).nil?%>
+        <%=link_to flickr_idea_inspire_path(@user, @photo_id), method:'POST', remote: true, class:'ui teal button like-button' do %>
+          <i class="star icon"></i> Inspire
+        <% end %>
+      <% else %>
+        <%=link_to flickr_idea_inspire_path(@user, @photo_id), method:'POST', remote: true, class:'ui teal button disabled like-button' do %>
+          <i class="star icon"></i> Inspired!
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
