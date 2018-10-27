@@ -1,6 +1,15 @@
 class Project < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+
+  settings do
+    mappings dynamic: false do
+      indexes :user, type: :text
+      indexes :title, type: :text, analyzer: :english
+      indexes :description, type: :text, analyzer: :english
+      indexes :link, type: :text
+    end
+  end
   mount_uploader :photo, PhotoUploader
   belongs_to :user
   has_many :thoughts, dependent: :destroy
