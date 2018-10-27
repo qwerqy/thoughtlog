@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :user, controller: 'users' do
     post '/follow' => 'users#follow', as: 'follow'
     delete '/unfollow' => 'users#unfollow', as: 'unfollow'
+    patch '/update-email' => 'users#update_email', as: 'update_email'
     resources :projects, controller: 'projects', only: [:create, :new, :show, :edit, :update, :destroy] do
       resources :thoughts, controller: 'thoughts'
       resources :likes, controller: 'likes', only: [:create, :destroy]
