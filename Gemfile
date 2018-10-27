@@ -92,5 +92,10 @@ gem 'tumblr_client', git: 'https://github.com/tumblr/tumblr_client.git', branch:
 
 gem 'flickraw', git: 'https://github.com/hanklords/flickraw.git', branch: 'master'
 
+gem 'elasticsearch-model', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
+
+gem 'elasticsearch-rails', git: 'git://github.com/elastic/elasticsearch-rails.git', branch: 'master'
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
