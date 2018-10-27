@@ -89,6 +89,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def search
+    query = params[:search_projects].presence && params[:search_projects][:query]
+
+    if query
+      @projects = Project.search(query)
+    end
+  end
+
   private
 
   def project_params
