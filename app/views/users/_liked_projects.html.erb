@@ -1,16 +1,28 @@
-<% @user.likes.each do |like| %>
-  <div class="item">
-    <% if like.project.photo_url.present? %>
-    <%=image_tag(like.project.photo_url, class: 'ui image avatar')%>
-    <% else %>
-    <i class="images large middle aligned grey icon"></i>
-    <% end %>
-    <div class="content">
-      <%=link_to "#{like.project.title}", user_project_path(like.project.user.id, like.project.id), class: 'header'%>
-      <% if like.project.description.present? %>
-        <div class="description"><%= sanitize like.project.description%></div>
+<% if @user.likes.present?%>
+  <% @user.likes.each do |like| %>
+    <div class="item">
+      <% if like.project.photo_url.present? %>
+      <%=image_tag(like.project.photo_url, class: 'ui image avatar')%>
       <% else %>
-        <div class="description">No project description.</div>
+      <i class="images large middle aligned grey icon"></i>
+      <% end %>
+      <div class="content">
+        <%=link_to "#{like.project.title}", user_project_path(like.project.user.id, like.project.id), class: 'header'%>
+        <% if like.project.description.present? %>
+          <div class="description"><%= sanitize like.project.description%></div>
+        <% else %>
+          <div class="description">No project description.</div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="item">
+    <div class="content">
+      <% if @user.id == current_user.id %>
+        <div class="ui sub header grey aligned center">You haven't liked any projects.</div>
+      <% else %>
+        <div class="ui sub header grey aligned center">This user hasn't liked any projects.</div>
       <% end %>
     </div>
   </div>

@@ -1,20 +1,32 @@
-<% @user.ideas.each do |idea| %>
-  <div class="item">
-    <% if idea.photo.present? %>
-    <%=image_tag(idea.photo, class: 'ui image avatar')%>
-    <% else %>
-    <i class="images large middle aligned grey icon"></i>
-    <% end %>
-    <div class="content">
-      <div class="header"><%=idea.title%></div>
-      <% if idea.description.present? %>
-        <div class="description"><%= sanitize idea.description%></div>
+<% if @user.ideas.present? %>
+  <% @user.ideas.each do |idea| %>
+    <div class="item">
+      <% if idea.photo.present? %>
+      <%=image_tag(idea.photo, class: 'ui image avatar')%>
       <% else %>
-        <div class="description">No project description.</div>
+      <i class="images large middle aligned grey icon"></i>
       <% end %>
-      <br/>
-      <%=link_to "Create Inspired Project", user_inspired_project_path(@user.id, idea.id), class: 'ui teal button tiny'%>
-      <%=link_to "Remove", user_remove_inspired_project_path(@user.id, idea.id), method: 'delete', remote: true, class: 'ui button tiny'%>
+      <div class="content">
+        <div class="header"><%=idea.title%></div>
+        <% if idea.description.present? %>
+          <div class="description"><%= sanitize idea.description%></div>
+        <% else %>
+          <div class="description">No project description.</div>
+        <% end %>
+        <br/>
+        <%=link_to "Create Inspired Project", user_inspired_project_path(@user.id, idea.id), class: 'ui teal button tiny'%>
+        <%=link_to "Remove", user_remove_inspired_project_path(@user.id, idea.id), method: 'delete', remote: true, class: 'ui button tiny'%>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="item">
+    <div class="content">
+      <% if @user.id == current_user.id %>
+        <div class="ui sub header grey aligned center">You haven't liked any ideas.</div>
+      <% else %>
+        <div class="ui sub header grey aligned center">This user hasn't liked any ideas.</div>
+      <% end %>
     </div>
   </div>
 <% end %>
