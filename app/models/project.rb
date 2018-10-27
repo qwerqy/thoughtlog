@@ -16,8 +16,8 @@ class Project < ApplicationRecord
     @photos.photo.each do |i|
       if i.present?
         x = flickr.photos.getSizes photo_id: i.id
-        user = flickr.profile.getProfile user_id: i.owner
         image = x.find { |s| s.label == 'Medium'}
+        user = flickr.profile.getProfile user_id: i.owner
 
         if user.respond_to?(:first_name)
           name = user.first_name + " " + user.last_name
@@ -36,6 +36,7 @@ class Project < ApplicationRecord
         photo = {
           title: i.title,
           photo: photo,
+          photo_id: i.id,
           link: link,
           user: name
         }
@@ -44,6 +45,21 @@ class Project < ApplicationRecord
     end
     return array
   end
+
+  def self.show_flickr(id)
+    flickr = FlickRaw::Flickr.new ENV['FLICKRAW_API_KEY'], ENV['FLICKRAW_SHARED_SECRET']
+    sizes = flickr.photos.getSizes photo_id: id
+    info = flickr.photos.getInfo photo_id: id
+    image = sizes.find { |s| s.label == 'Medium'}
+    show = {
+      title: info.title,
+      photo: image.source,
+      link: image.url,
+      user: info.owner.username
+    }
+    return show
+  end
+
 
   private
 
