@@ -1,4 +1,4 @@
-<div class="ui container text">
+<div class="ui container text" style="padding-bottom: 3em;">
   <h1 class="ui teal header">Create a Project inspired by <%=@idea.title%>.</h1>
   <%=form_with scope: :project, url: user_projects_path(@user.id), method: 'post', local: true, class: 'ui form' do |f|%>
     <div class="field">
@@ -16,7 +16,8 @@
     </div>
     <div class="field">
       <% if @idea.photo.present? %>
-       <%=image_tag(@idea.photo)%>
+       <%=image_tag(@idea.photo, class: 'ui image fluid')%>
+       <%=f.hidden_field :remote_photo_url, value: @idea.photo %>
      <% else %>
       <%=f.label "Upload Project Photo"%>
       <%= f.file_field :photo %>
