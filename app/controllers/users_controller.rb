@@ -60,6 +60,24 @@ class UsersController < ApplicationController
   end
 
   def update_password
+    @user = User.find(params[:user_id])
+    current_password = params[:user][:current_password]
+    new_password = params[:user][:new_password]
+    confirm_password = params[:user][:confirm_password]
+
+    if @user.authenticate(current_password)
+      if new_password == confirm_password
+        @user.update(password: new_password, password_confirmation: confirm_password)
+        flash[:positive] = 'Password successfully changed!'
+        redirect_back(fallback_location: @user)
+      else
+        flash[:negative] = 'Password does not match.'
+        redirect_back(fallback_location: @user)
+      end
+    else
+      flash[:negative] = 'Wrong password entered. Try again'
+      redirect_back(fallback_location: @user)
+    end
   end
 
   def follow

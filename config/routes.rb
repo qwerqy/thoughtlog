@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post '/follow' => 'users#follow', as: 'follow'
     delete '/unfollow' => 'users#unfollow', as: 'unfollow'
     patch '/update-email' => 'users#update_email', as: 'update_email'
+    patch '/update-password' => 'users#update_password', as: 'update_password'
     resources :projects, controller: 'projects', only: [:create, :new, :show, :edit, :update, :destroy] do
       resources :thoughts, controller: 'thoughts'
       resources :likes, controller: 'likes', only: [:create, :destroy]

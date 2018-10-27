@@ -87,10 +87,29 @@
             <input placeholder="*********" readonly="" type="password">
           </div>
         </div>
+        <div class="field change-password-window">
+          <div class="divider ui"></div>
+          <%=form_with( scope: :user, url: user_update_password_path(@user.id), method: 'patch', local: true, id:'change_email_form', class: 'ui form') do |f| %>
+            <div class="field">
+              <%=f.label 'Current Password:'%>
+              <%=f.password_field :current_password, required: true%>
+            </div>
+            <div class="field">
+              <%=f.label 'New Password:'%>
+              <%=f.password_field :new_password, required: true%>
+            </div>
+            <div class="field">
+              <%=f.label 'Confirm new password:'%>
+              <%=f.password_field :confirm_password, required: true%>
+            </div>
+            <%= f.submit 'Apply', class: 'ui teal button' %>
+          <% end %>
+          <div class="divider ui"></div>
+        </div>
       </div>
     </div>
     <div class="column">
-      <a class="ui button" href="">Change Password</a>
+      <a class="ui button" id="change-password" href="">Change Password</a>
     </div>
   </div>
 </div>
