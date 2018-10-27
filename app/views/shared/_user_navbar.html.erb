@@ -17,6 +17,7 @@
           <%= image_tag(current_user.avatar_url, class: 'ui avatar image') %>
           <div class="menu">
             <%=link_to "My Profile", user_path(current_user.id), class:'item'%>
+            <%=link_to "Account Settings", edit_user_path(current_user.id), class:'item'%>
             <%=link_to 'Logout', logout_path, method: 'delete', class: 'item' %>
           </div>
         </div>
