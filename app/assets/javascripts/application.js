@@ -15,6 +15,7 @@
 //= require semantic-ui
 //= require moment
 //= require home
+//= require users
 //= require activestorage
 //= require turbolinks
 //= require trix
