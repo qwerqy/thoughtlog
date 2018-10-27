@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     delete '/inspired-project/:id/delete' => 'projects#destroy_inspired_projects', as: 'remove_inspired_project'
   end
 
+  get '/projects/search' => 'projects#search', as: 'search_projects'
+
   get '/projects/all' => 'projects#index', as: 'all_projects'
   get '/projects/:blog_name/:id' => 'projects#tumblr_show', as: 'tumblr'
   get '/projects/flickr/:user_name/:id' => 'projects#flickr_show', as: 'flickr'
