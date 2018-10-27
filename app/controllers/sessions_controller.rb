@@ -7,9 +7,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
       sign_in(@user)
+      flash[:positive] = "Welcome back #{@user.name}"
       redirect_to root_path
     else
-      flash[:notice] = "Invalid details/Account not found."
+      flash[:negative] = "Invalid details/Account not found."
       redirect_back(fallback_location: root_path)
     end
   end

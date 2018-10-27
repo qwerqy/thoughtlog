@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       sign_in(@user)
       redirect_to root_path
     else
-      flash[:notice] = "#{@user.errors.full_messages}"
+      flash[:negative] = "#{@user.errors.full_messages}"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -27,10 +27,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = "Profile Updated."
+      flash[:positive] = "Profile Updated."
       redirect_back(fallback_location: user_path(@user.id))
     else
-      flash[:error] = "Something's wrong. #{@user.errors.full_messages.to_sentence}"
+      flash[:negative] = "Something's wrong. #{@user.errors.full_messages.to_sentence}"
       redirect_back(fallback_location: user_path(@user.id))
     end
   end

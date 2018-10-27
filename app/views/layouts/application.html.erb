@@ -16,8 +16,9 @@
     <% else %>
     <%= render 'shared/visitor_navbar'%>
     <% end %>
+
     <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %> closable">
+      <div class="ui <%=key%> message closable">
         <i class="close icon"></i>
         <%= value %>
       </div>

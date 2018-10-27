@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @user
     else
-      flash[:error] = "Something's wrong. #{@project.errors.full_messages.to_sentence}"
+      flash[:negative] = "Something's wrong. #{@project.errors.full_messages.to_sentence}"
       redirect_back(fallback_location: @user)
     end
   end
