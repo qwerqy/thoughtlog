@@ -16,8 +16,14 @@ class Project < ApplicationRecord
     @photos.photo.each do |i|
       if i.present?
         x = flickr.photos.getSizes photo_id: i.id
-
+        user = flickr.profile.getProfile user_id: i.owner
         image = x.find { |s| s.label == 'Medium'}
+
+        if user.respond_to?(:first_name)
+          name = user.first_name + " " + user.last_name
+        else
+          name = 'Flickr User'
+        end
 
         if image.present?
           photo = image.source
@@ -31,7 +37,7 @@ class Project < ApplicationRecord
           title: i.title,
           photo: photo,
           link: link,
-          user: ''
+          user: name
         }
         array << photo
       end
