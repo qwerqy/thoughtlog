@@ -1,7 +1,9 @@
 class User < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
-  include BCrypt
   has_secure_password
+  mount_uploader :avatar, AvatarUploader
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  include BCrypt
 
   has_many :followers, :class_name => 'Relationship', :foreign_key => 'user_id'
   has_many :following, :class_name => 'Relationship', :foreign_key => 'follower_id'
@@ -11,6 +13,18 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   has_many :inspires, dependent: :destroy
   has_many :ideas, through: :inspires, dependent: :destroy
+
+
+  # settings do
+  #   mappings dynamic: false do
+  #     indexes :first_name, type: :text, analyzer: :english
+  #     indexes :last_name, type: :text, analyzer: :english
+  #     indexes :email, type: :text, analyzer: :english
+  #     indexes :about, type: :text, analyzer: :english
+  #     indexes :avatar, type: :text
+  #     indexes :location, type: :text, analyzer: :english
+  #   end
+  # end
 
   validates :first_name, presence: true, if: :first_name
   validates :last_name, presence: true, if: :last_name
