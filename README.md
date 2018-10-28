@@ -7,3 +7,25 @@
 ## [Live Site](http://thoughtlogger.herokuapp.com)
 
 ## [More info](https://aminroslan.com/projects/3)
+
+## Framework
+Ruby on Rails 5.2.1
+
+## Languages
+- HTML
+- CSS
+- Ruby
+- Javascript
+- jQuery
+- React JS
+
+## Others
+- Semantic UI
+- ElasticSearch
+- Sass Integrated
+- AWS
+- Flickr API
+- Tumblr API
+
+## Gems used
+Please check in my gemfile for the gems I am using. May change on updates.
