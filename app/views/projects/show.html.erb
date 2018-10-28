@@ -43,7 +43,7 @@
       <div class="content">
         <%=form_with(scope: :thought, url: user_project_thoughts_path(@user.id, @project.id), method: 'post', id:'thought_form', class: 'ui form') do |f| %>
           <div class="inline field">
-            <%=f.text_area :content, placeholder: "Add a thought", rows: 2%>
+            <%=f.text_area :content, placeholder: "Add a thought", rows: 2, required: true%>
             <br/>
             <br/>
             <%=f.submit "Send", class: 'ui button'%>
@@ -52,7 +52,11 @@
       </div>
     <% end %>
     <div class="thoughts-timeline content">
-      <%= render 'thoughts/no_thoughts' %>
+      <% if @project.thoughts.present? %>
+        <%= render 'thoughts/timeline' %>
+      <% else %>
+        <%= render 'thoughts/no_thoughts' %>
+      <% end %>
     </div>
   </div>
 </div>
