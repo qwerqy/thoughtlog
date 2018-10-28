@@ -33,6 +33,7 @@
             <%=link_to "Follow", user_follow_path(@user.id), method: 'post', class: 'ui teal button', style:"margin-top:1em;margin-bottom:1em;"%>
           <% end %>
         <% end %>
+        <p style="font-size: 0.7em;">A User since <%=local_time_ago(@user.created_at)%></p>
         <p><%=@user.location%></p>
         <p><%=@user.about%></p>
       </div>
