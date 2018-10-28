@@ -31,7 +31,7 @@ class Project < ApplicationRecord
         user = flickr.profile.getProfile user_id: i.owner
 
         if user.respond_to?(:first_name)
-          name = user.first_name + " " + user.last_name
+          name = "#{user.first_name} " + "#{user.last_name}"
         else
           name = 'Flickr User'
         end

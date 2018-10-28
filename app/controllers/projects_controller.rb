@@ -97,6 +97,7 @@ class ProjectsController < ApplicationController
       @tagged = client.tagged query, limit: 10
       @flickrs = Project.get_flickr(query)
       @projects = Project.search(query)
+      @users = User.search(query)
       @count = @projects.size + @flickrs.size + @tagged.size
     end
   end
