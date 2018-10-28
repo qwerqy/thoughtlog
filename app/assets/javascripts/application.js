@@ -16,6 +16,7 @@
 //= require moment
 //= require home
 //= require users
+//= require local-time
 //= require activestorage
 //= require turbolinks
 //= require trix

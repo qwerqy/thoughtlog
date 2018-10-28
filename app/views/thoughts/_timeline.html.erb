@@ -8,7 +8,7 @@
         <div class="summary">
           <%=link_to "#{thought.user.name}", user_path(@user.id)%> added a thought.
           <div class="date">
-            <%=thought.created_at.strftime('%b %e, %l:%M %p')%>
+            <%=local_time_ago(thought.created_at.strftime('%b %e, %l:%M %p'))%>
           </div>
         </div>
         <div class="extra text">

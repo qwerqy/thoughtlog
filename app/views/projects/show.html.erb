@@ -19,6 +19,9 @@
     </div>
     <% end %>
     <div class="content">
+      <div class="ui header tiny grey">
+        Created <%=local_time_ago(@project.created_at.strftime('%b %e, %l:%M %p'))%>.
+      </div>
       <p class="description"><%=sanitize @project.description%></p>
       <div class="ui labeled button" tabindex="0">
         <% if current_user.id != @user.id %>
