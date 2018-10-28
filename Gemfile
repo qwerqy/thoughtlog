@@ -64,6 +64,8 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+gem 'simplecov', require: false, group: :test
+
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'semantic-ui-sass'
