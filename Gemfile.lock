@@ -156,6 +156,8 @@ GEM
       multi_json
     erubi (1.7.1)
     execjs (2.7.0)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
@@ -359,6 +361,7 @@ DEPENDENCIES
   database_cleaner
   elasticsearch-model!
   elasticsearch-rails!
+  factory_bot
   faker!
   figaro
   flickraw!

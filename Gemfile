@@ -45,6 +45,8 @@ group :development, :test do
   gem "rspec-rails"
 
   gem "shoulda"
+
+  gem 'factory_bot'
 end
 
 group :development do
