@@ -24,7 +24,7 @@ class Project < ApplicationRecord
 
   def self.get_flickr(params)
     flickr = FlickRaw::Flickr.new ENV['FLICKRAW_API_KEY'], ENV['FLICKRAW_SHARED_SECRET']
-    @photos = flickr.photos.search tags: params, privacy_filter: 1, per_page: 20
+    @photos = flickr.photos.search tags: params, privacy_filter: 1, per_page: 10
     array = Array.new
     @photos.photo.compact!
     @photos.photo.each do |i|
@@ -72,6 +72,18 @@ class Project < ApplicationRecord
       user: info.owner.username
     }
     return show
+  end
+
+  def self.get_tumblr(params)
+    client = Tumblr::Client.new
+    a = client.tagged"#{params}", limit: 10
+    return a
+  end
+
+  def self.show_tumblr(blog_name, id)
+    client = Tumblr::Client.new
+    project = client.posts "#{blog_name}", :id => id
+    return project
   end
 
 

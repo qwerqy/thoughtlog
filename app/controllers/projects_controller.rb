@@ -44,8 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def tumblr_show
-    client = Tumblr::Client.new
-    @project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
+    @project = Project.show_tumblr(params[:blog_name], params[:id])
   end
 
   def flickr_show
