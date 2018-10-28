@@ -23,22 +23,17 @@
         Created <%=local_time_ago(@project.created_at.strftime('%b %e, %l:%M %p'))%>.
       </div>
       <p class="description"><%=sanitize @project.description%></p>
-      <div class="ui labeled button" tabindex="0">
         <% if current_user.id != @user.id %>
           <% if current_user.like?(@project) %>
-            <%=link_to user_project_like_path(@user.id, @project.id, @like.id), method:'DELETE', remote: true, class:'ui teal button like-button' do %>
-              <i class="heart icon"></i> Liked!
-            <% end %>
+          <div class="ui labeled button like-btn-container" tabindex="0">
+            <%= render 'likes/unlike' %>
+          </div>
           <% else %>
-            <%=link_to user_project_likes_path(@user.id, @project.id), method:'POST', remote: true, class:'ui teal button like-button' do %>
-              <i class="heart icon"></i> Like
-            <% end %>
+            <div class="ui labeled button like-btn-container" tabindex="0">
+              <%= render 'likes/like' %>
+            </div>
           <% end %>
-          <a class="ui basic teal left pointing label likes-count">
-            <%=@project.likes.count%>
-          </a>
         <% end %>
-      </div>
     </div>
   </div>
   <div class="ui fluid card">
