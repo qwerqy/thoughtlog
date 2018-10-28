@@ -1,0 +1,39 @@
+<% @users.each do |user|%>
+  <div class="column">
+    <div class="ui card">
+      <% if user.avatar.url.present?%>
+        <div class="image">
+          <%=image_tag('imageplaceholder.png', data: {src: user.avatar.url})%>
+        </div>
+      <% end %>
+      <div class="content">
+        <%=link_to "#{user.first_name + ' ' + user.last_name}", user_path(user.id), class: 'header'%>
+        <div class="description">
+          <%=sanitize truncate(user.about, length: 50)%>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui horizontal list">
+          <div class="item">
+            <div class="content">
+              <div class="header">Followers</div>
+              <%=User.find(user.id).followers.count%>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <div class="header">Thoughts</div>
+              <%=User.find(user.id).thoughts.count%>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <div class="header">Projects</div>
+              <%=User.find(user.id).projects.count%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
