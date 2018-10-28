@@ -1,15 +1,18 @@
 class Project < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model unless Rails.env.test?
+  include Elasticsearch::Model::Callbacks unless Rails.env.test?
 
-  settings do
-    mappings dynamic: false do
-      indexes :user, type: :text
-      indexes :title, type: :text, analyzer: :english
-      indexes :description, type: :text, analyzer: :english
-      indexes :link, type: :text
+  unless Rails.env.test?
+    settings do
+      mappings dynamic: false do
+        indexes :user, type: :text
+        indexes :title, type: :text, analyzer: :english
+        indexes :description, type: :text, analyzer: :english
+        indexes :link, type: :text
+      end
     end
   end
+
   mount_uploader :photo, PhotoUploader
   belongs_to :user
   has_many :thoughts, dependent: :destroy
