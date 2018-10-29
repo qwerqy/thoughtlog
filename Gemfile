@@ -44,7 +44,11 @@ group :development, :test do
 
   gem "rspec-rails"
 
+  gem 'rails-controller-testing'
+
   gem "shoulda"
+
+  gem "factory_bot_rails", "~> 4.0"
 end
 
 group :development do
@@ -63,6 +67,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
+
+gem 'simplecov', require: false, group: :test
 
 gem 'bcrypt', '~> 3.1.7'
 

@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   def index
     if signed_in?
-      client = Tumblr::Client.new
-      @tagged = client.tagged'ideas', limit: 10
+      @tagged = Project.get_tumblr('idea')
       @flickrs = Project.get_flickr('idea')
       @projects = Project.includes(:user).limit(20).order(created_at: :desc)
     end

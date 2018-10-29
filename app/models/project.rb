@@ -1,15 +1,18 @@
 class Project < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model unless Rails.env.test?
+  include Elasticsearch::Model::Callbacks unless Rails.env.test?
 
-  settings do
-    mappings dynamic: false do
-      indexes :user, type: :text
-      indexes :title, type: :text, analyzer: :english
-      indexes :description, type: :text, analyzer: :english
-      indexes :link, type: :text
+  unless Rails.env.test?
+    settings do
+      mappings dynamic: false do
+        indexes :user, type: :text
+        indexes :title, type: :text, analyzer: :english
+        indexes :description, type: :text, analyzer: :english
+        indexes :link, type: :text
+      end
     end
   end
+
   mount_uploader :photo, PhotoUploader
   belongs_to :user
   has_many :thoughts, dependent: :destroy
@@ -21,7 +24,7 @@ class Project < ApplicationRecord
 
   def self.get_flickr(params)
     flickr = FlickRaw::Flickr.new ENV['FLICKRAW_API_KEY'], ENV['FLICKRAW_SHARED_SECRET']
-    @photos = flickr.photos.search tags: params, privacy_filter: 1, per_page: 20
+    @photos = flickr.photos.search tags: params, privacy_filter: 1, per_page: 10
     array = Array.new
     @photos.photo.compact!
     @photos.photo.each do |i|
@@ -71,10 +74,22 @@ class Project < ApplicationRecord
     return show
   end
 
+  def self.get_tumblr(params)
+    client = Tumblr::Client.new
+    a = client.tagged"#{params}", limit: 10
+    return a
+  end
+
+  def self.show_tumblr(blog_name, id)
+    client = Tumblr::Client.new
+    project = client.posts "#{blog_name}", :id => id
+    return project
+  end
+
 
   private
 
   def leave_empty?
-    link == ''
+    link == nil
   end
 end

@@ -1,2 +1,2 @@
 $('.likes-count').html("<%=@project.likes.count%>")
-$('.like-button').html("<i class='heart icon'></i> Saved!")
+$('.like-btn-container').html("<%= j render 'likes/unlike' %>")

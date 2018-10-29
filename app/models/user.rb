@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   mount_uploader :avatar, AvatarUploader
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model unless Rails.env.test?
+  include Elasticsearch::Model::Callbacks unless Rails.env.test?
   include BCrypt
 
   has_many :followers, :class_name => 'Relationship', :foreign_key => 'user_id'
