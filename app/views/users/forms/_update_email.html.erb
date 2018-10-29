@@ -1,0 +1,15 @@
+<%=form_with( scope: :user, url: user_update_email_path(@user.id), method: 'patch', local: true, id:'change_email_form', class: 'ui form') do |f| %>
+  <div class="field">
+    <%=f.label 'Current Email:'%>
+    <%=f.text_field :current_email, required: true%>
+  </div>
+  <div class="field">
+    <%=f.label 'New Email:'%>
+    <%=f.text_field :new_email, required: true%>
+  </div>
+  <div class="field">
+    <%=f.label 'Enter password:'%>
+    <%=f.password_field :password, required: true%>
+  </div>
+  <%= f.submit 'Apply', class: 'ui teal button' %>
+<% end %>

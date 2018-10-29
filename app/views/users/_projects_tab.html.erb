@@ -1,0 +1,12 @@
+<% if @user.projects.present? %>
+  <div class="ui secondary pointing three item menu">
+    <%= link_to "Projects", self_projects_path(@user.id), class: 'item active user-projects-btn', remote:true%>
+    <%= link_to "Liked", liked_projects_path(@user.id), class: 'item liked-projects-btn', remote:true%>
+    <%= link_to "Inspired", inspired_ideas_path(@user.id), class: 'item inspired-ideas-btn', remote:true%>
+  </div>
+    <div class="ui middle aligned very relaxed divided list projects-list">
+      <%= render 'users/projects' %>
+    </div>
+<% else %>
+  <h4 class="ui header">This user has no projects.</h4>
+<% end %>
