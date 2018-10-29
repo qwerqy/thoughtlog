@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :require_login, only: [:show, :edit, :new, :create, :update, :destroy, :follow, :unfollow]
+  before_action :require_login, only: [:show, :edit, :new, :create, :update, :destroy, :follow, :unfollow, :search]
   def index
   end
 

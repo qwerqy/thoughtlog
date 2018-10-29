@@ -1,0 +1,27 @@
+<% @users.each do |user|%>
+  <div class="column">
+    <div class="ui card">
+      <%= project_photo(user.avatar.url) %>
+      <div class="content">
+        <%=link_to "#{user.first_name + ' ' + user.last_name}", user_path(user.id), class: 'header'%>
+        <div class="description">
+          <%=sanitize truncate(user.about, length: 50)%>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui horizontal list">
+          <% User.find(user.id).data.each do |info| %>
+            <% info.each do |key, value| %>
+              <div class="item">
+                <div class="content">
+                  <div class="header"><%=key%></div>
+                  <%=value%>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

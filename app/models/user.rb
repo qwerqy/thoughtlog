@@ -76,4 +76,13 @@ class User < ApplicationRecord
   def unfollow!(other_user)
     following.find_by(user_id: other_user.id).destroy
   end
+
+  def data
+    datas = [
+      {"Following" => self.followers.count},
+      {"Thoughts" => self.thoughts.count},
+      {"Projects" => self.projects.count}
+    ]
+    return datas
+  end
 end
