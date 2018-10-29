@@ -14,11 +14,11 @@ module HomeHelper
     end
   end
 
-  def project_photo(project)
-    if project.photo_url.present?
+  def project_photo(photo)
+    if photo.present?
     f = '<div class="image">'.html_safe
     b = '</div>'.html_safe
-    return f + image_tag(project.photo_url) + b
+    return f + image_tag('imageplaceholder.png', data: {src: photo}) + b
     end
   end
 
@@ -39,7 +39,7 @@ module HomeHelper
         d << false
       end
     end
-    
+
     if d.include?(true)
       render 'home/show/cards'
     elsif d.all? == false

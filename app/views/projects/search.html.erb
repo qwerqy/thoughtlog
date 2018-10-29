@@ -6,7 +6,7 @@
           <div class="ui header">Users found: <%=@users.count%></div>
           <div class="ui divider"></div>
           <div class="ui four column stackable grid">
-            <%= render 'home/search_user' %>
+            <%= render 'home/index/home/search_user' %>
           </div>
           <div class="ui header">
             <div class="content">
@@ -16,15 +16,15 @@
           </div>
           <div class="ui divider"></div>
           <div class="ui three column doubling stackable masonry grid">
-            <%= render 'home/tumblr_timeline' %>
-            <%= render 'home/flickr_timeline' %>
+            <%= render 'home/index/home/tumblr_timeline' %>
+            <%= render 'home/index/home/flickr_timeline' %>
           </div>
         <% else %>
         <div class="ui divider hidden"></div>
         <div class="ui header">Users found: <%=@users.count%></div>
         <div class="ui divider"></div>
         <div class="ui four column stackable grid">
-          <%= render 'home/search_user' %>
+          <%= render 'home/index/home/search_user' %>
         </div>
         <div class="ui header">
           <div class="content">
@@ -33,9 +33,9 @@
         </div>
         <div class="ui divider"></div>
         <div class="ui three column doubling stackable masonry grid">
-          <%= render 'home/search_projects_timeline'%>
-          <%= render 'home/tumblr_timeline' %>
-          <%= render 'home/flickr_timeline' %>
+          <%= render 'home/index/home/search_projects_timeline'%>
+          <%= render 'home/index/home/tumblr_timeline' %>
+          <%= render 'home/index/home/flickr_timeline' %>
         </div>
         <% end %>
       <% end %>

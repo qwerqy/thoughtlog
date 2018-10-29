@@ -1,9 +1,7 @@
 <% @flickrs.each do |flickr|%>
   <div class="column">
     <div class="ui card">
-      <div class="image">
-        <%=image_tag('imageplaceholder.png', data: {src: flickr[:photo]})%>
-      </div>
+      <%= project_photo(flickr[:photo]) %>
       <div class="content">
         <%= link_to "#{flickr[:title]}", flickr_path(flickr[:user], flickr[:photo_id]), class: 'header' %>
         <br/>
