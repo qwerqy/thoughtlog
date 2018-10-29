@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :require_login, only: [:show]
   def index
     if signed_in?
       @tagged = Project.get_tumblr('idea')
