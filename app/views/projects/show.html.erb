@@ -13,48 +13,19 @@
         <h1 class="header"><%=@project.title%> </h1>
       </div>
     </div>
-    <% if @project.photo.present?%>
-    <div class="image" style='margin:1em;'>
-      <%=image_tag(@project.photo_url, class:'ui image rounded')%>
-    </div>
-    <% end %>
+    <%= show_project_photo(@project) %>
     <div class="content">
       <div class="ui header tiny grey">
         Created <%=local_time_ago(@project.created_at.strftime('%b %e, %l:%M %p'))%>.
       </div>
       <p class="description"><%=sanitize @project.description%></p>
-        <% if current_user.id != @user.id %>
-          <% if current_user.like?(@project) %>
-          <div class="ui labeled button like-btn-container" tabindex="0">
-            <%= render 'likes/unlike' %>
-          </div>
-          <% else %>
-            <div class="ui labeled button like-btn-container" tabindex="0">
-              <%= render 'likes/like' %>
-            </div>
-          <% end %>
-        <% end %>
+        <%= like_button(@user, @project) %>
     </div>
   </div>
   <div class="ui fluid card">
-    <% if current_user.id == @user.id %>
-      <div class="content">
-        <%=form_with(scope: :thought, url: user_project_thoughts_path(@user.id, @project.id), method: 'post', id:'thought_form', class: 'ui form') do |f| %>
-          <div class="inline field">
-            <%=f.text_area :content, placeholder: "Add a thought", rows: 2, required: true%>
-            <br/>
-            <br/>
-            <%=f.submit "Send", class: 'ui button'%>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    <%= new_thought(@user) %>
     <div class="thoughts-timeline content">
-      <% if @project.thoughts.present? %>
-        <%= render 'thoughts/timeline' %>
-      <% else %>
-        <%= render 'thoughts/no_thoughts' %>
-      <% end %>
+      <%= timeline(@project) %>
     </div>
   </div>
 </div>

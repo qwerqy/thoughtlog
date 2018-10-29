@@ -27,15 +27,7 @@
     <div class="content">
       <p class="description"><%= sanitize @project['posts'][0]['caption'] %></p>
       <p class="description"><%= sanitize @project['posts'][0]['body'] %></p>
-      <% if current_user.ideas.find_by(link: @project['posts'][0]['short_url']).nil?%>
-        <%=link_to tumblr_idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button like-button' do %>
-          <i class="star icon"></i> Inspire
-        <% end %>
-      <% else %>
-        <%=link_to tumblr_idea_inspire_path(@project['blog']['name'], @project['posts'][0]['id']), method:'POST', remote: true, class:'ui teal button disabled like-button' do %>
-          <i class="star icon"></i> Inspired!
-        <% end %>
-      <% end %>
+      <%= inspire_button_tumblr(@project)%>
     </div>
   </div>
 </div>

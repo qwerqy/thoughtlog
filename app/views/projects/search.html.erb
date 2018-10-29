@@ -1,45 +1,9 @@
-<% if signed_in? %>
-  <div class="ui container">
-      <% unless @projects.nil? %>
-        <% if @projects.empty? %>
-          <div class="ui divider hidden"></div>
-          <div class="ui header">Users found: <%=@users.count%></div>
-          <div class="ui divider"></div>
-          <div class="ui four column stackable grid">
-            <%= render 'home/index/home/search_user' %>
-          </div>
-          <div class="ui header">
-            <div class="content">
-              Search results: <%=@count%>
-              <div class="sub header">We didn't find any results within our database, however these are from our partners.</div>
-            </div>
-          </div>
-          <div class="ui divider"></div>
-          <div class="ui three column doubling stackable masonry grid">
-            <%= render 'home/index/home/tumblr_timeline' %>
-            <%= render 'home/index/home/flickr_timeline' %>
-          </div>
-        <% else %>
-        <div class="ui divider hidden"></div>
-        <div class="ui header">Users found: <%=@users.count%></div>
-        <div class="ui divider"></div>
-        <div class="ui four column stackable grid">
-          <%= render 'home/index/home/search_user' %>
-        </div>
-        <div class="ui header">
-          <div class="content">
-            Search results: <%=@count%>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        <div class="ui three column doubling stackable masonry grid">
-          <%= render 'home/index/home/search_projects_timeline'%>
-          <%= render 'home/index/home/tumblr_timeline' %>
-          <%= render 'home/index/home/flickr_timeline' %>
-        </div>
-        <% end %>
-      <% end %>
-  </div>
-<% else %>
-  <%= render 'home/landing' %>
-<% end %>
+<div class="ui container">
+  <% unless @projects.nil? %>
+    <% if @projects.empty? %>
+      <%= render 'projects/search/results_without_projects' %>
+    <% else %>
+      <%= render 'projects/search/results_with_projects' %>
+    <% end %>
+  <% end %>
+</div>

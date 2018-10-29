@@ -1,0 +1,27 @@
+<%=form_with scope: :project, url: user_projects_path(@user.id), method: 'post', local: true, class: 'ui form' do |f|%>
+  <div class="field">
+    <%=f.label "Title of Project*"%>
+    <%=f.text_field :title, value: "#{@idea.title}"%>
+  </div>
+  <div class="field">
+    <%= f.label "Description of Project" %>
+    <%= f.hidden_field :description, id: 'project_description' %>
+    <trix-editor input='project_description' placeholder="<%=@idea.description%>">
+  </div>
+  <div class="field">
+    <%= f.label "External link to your Project. (optional)"%>
+    <%= f.text_field :link, value: "#{@idea.link}"%>
+  </div>
+  <div class="field">
+    <% if @idea.photo.present? %>
+     <%=image_tag(@idea.photo, class: 'ui image fluid')%>
+     <%=f.hidden_field :remote_photo_url, value: @idea.photo %>
+   <% else %>
+    <%=f.label "Upload Project Photo"%>
+    <%= f.file_field :photo %>
+    <%= f.hidden_field :photo_cache %>
+  <% end %>
+  </div>
+  <%=f.submit 'Create Inspired Project', class: 'ui teal button'%>
+  <%=link_to "Go Back", user_path(@user.id), class: 'ui button'%>
+<% end %>
