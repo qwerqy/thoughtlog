@@ -90,6 +90,6 @@ class Project < ApplicationRecord
   private
 
   def leave_empty?
-    link == ''
+    link == nil
   end
 end
