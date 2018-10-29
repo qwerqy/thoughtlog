@@ -9,7 +9,7 @@ module HomeHelper
 
   def project_owner_name(project)
     link_to user_path(project.user.id) do
-      '<i class="user icon"></i>'.html_safe
+      '<i class="user icon"></i>'.html_safe +
       project.user.name
     end
   end
@@ -26,7 +26,7 @@ module HomeHelper
     if project.thoughts.present?
       f = '<div class="meta">'.html_safe
       b = '</div>'.html_safe
-      return f + project.thoughts.count + " thoughts." + b
+      f + "#{project.thoughts.size}" + " thoughts." + b
     end
   end
 
