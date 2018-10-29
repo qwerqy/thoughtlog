@@ -44,12 +44,5 @@
   <div class="ui divider hidden"></div>
   <div class="ui divider"></div>
   <div class="ui header teal">Account Settings.</div>
-  <% if Authentication.find_by(user_id: @user.id).present? %>
-    <h5 class="ui header grey">
-      We have detected that you signed in via your Google Account. You may continue signing in via Google, without having to worry about changing your account details here.
-      Have a good day!
-    </h5>
-  <% else %>
-    <%= render 'users/form_account_setting' %>
-  <% end %>
+  <%= account_settings(@user) %>
 </div>
