@@ -3,17 +3,8 @@ class InspiresController < ApplicationController
     client = Tumblr::Client.new
     project = client.posts "#{params[:blog_name]}.tumblr.com", :id => params[:id]
 
-    if project['posts'][0]['photos'].present?
-      photo = project['posts'][0]['photos'][0]['original_size']['url']
-    else
-      photo = ''
-    end
-
-    if project['posts'][0]['caption'].present?
-      description = project['posts'][0]['caption']
-    else
-      description = project['posts'][0]['body']
-    end
+    photo = tumblr_photo(project['posts'][0]['photos'])
+    description = tumblr_caption(project)
 
     idea = {
       title: project['blog']['title'],
@@ -21,8 +12,10 @@ class InspiresController < ApplicationController
       photo: photo,
       link: project['posts'][0]['short_url'],
     }
+
     i = Idea.create!(idea)
     Inspire.create!(idea_id: i.id, user_id: current_user.id)
+
     respond_to do |format|
       format.js
     end
@@ -39,8 +32,10 @@ class InspiresController < ApplicationController
       photo: @project[:photo],
       link: @project[:link],
     }
+
     i = Idea.create!(idea)
     Inspire.create!(idea_id: i.id, user_id: current_user.id)
+    
     respond_to do |format|
       format.js
     end
